@@ -1,0 +1,14 @@
+# One Render web service: builds the React client and serves it from Express.
+services:
+  - type: web
+    name: onboardly
+    runtime: node
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false        # paste your MongoDB Atlas connection string
+      - key: JWT_SECRET
+        generateValue: true

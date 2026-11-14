@@ -1,0 +1,16 @@
+{
+  "name": "onboardly",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Employee onboarding platform built with MongoDB, Express, React and Node",
+  "scripts": {
+    "install-all": "npm install && npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "seed": "npm run seed --prefix server",
+    "build": "npm install --prefix client --include=dev && npm run build --prefix client && npm install --prefix server",
+    "start": "npm start --prefix server"
+  },
+  "devDependencies": {    
+    "concurrently": "^8.2.2"
+  }
+}
