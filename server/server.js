@@ -28,10 +28,19 @@ app.use('/api/stats', statsRoutes);
 app.use('/api', notFound);
 
 // In production the Express server also serves the built React app.
+
+// if (process.env.NODE_ENV === 'production') {
+//   const dist = path.join(__dirname, '../client/dist');
+//   app.use(express.static(dist));
+//   app.get(/^(?!\/api).*/, (req, res) => res.sendFile(path.join(dist, 'index.html')));
+// }
 if (process.env.NODE_ENV === 'production') {
   const dist = path.join(__dirname, '../client/dist');
   app.use(express.static(dist));
-  app.get(/^(?!\/api).*/, (req, res) => res.sendFile(path.join(dist, 'index.html')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(dist, 'index.html'));
+  });
 }
 
 app.use(errorHandler);
